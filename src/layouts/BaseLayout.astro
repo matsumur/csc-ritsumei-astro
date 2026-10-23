@@ -1,0 +1,57 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  activeNav?: 'home' | 'news' | 'member' | 'resarch' | 'social' | 'contact' | 'link';
+}
+
+const { title, activeNav } = Astro.props;
+const rawBase = import.meta.env.BASE_URL || '/';
+const base = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
+const withBase = (p: string) => `${base}${p.replace(/^\/+/, '')}`;
+---
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="立命館大学 認知科学研究センター（Center for Cognitive Science, Ritsumeikan University）公式ウェブサイト" />
+  <title>{title}</title>
+</head>
+<body>
+  <div id="container">
+    <header id="header">
+      <a href={withBase('home.html')} class="header-logo-link" title="立命館大学 認知科学研究センター ホームへ">
+        <img src={withBase('image/teaser.png')} alt="立命館大学 認知科学研究センター" class="header-logo" width="374" height="98" />
+        <h1 class="noShow">認知科学研究センター</h1>
+      </a>
+    </header>
+
+    <nav class="menubar" aria-label="メインナビゲーション">
+      <ul>
+        <li><a href={withBase('home.html')} class={activeNav === 'home' ? 'active' : ''}>ホーム</a></li>
+        <li><a href={withBase('index.html')} class={activeNav === 'news' ? 'active' : ''}>新着情報</a></li>
+        <li><a href={withBase('member.html')} class={activeNav === 'member' ? 'active' : ''}>構成メンバー</a></li>
+        <li><a href={withBase('resarch.html')} class={activeNav === 'resarch' ? 'active' : ''}>研究活動</a></li>
+        <li><a href={withBase('social.html')} class={activeNav === 'social' ? 'active' : ''}>社会的連携</a></li>
+        <li><a href={withBase('contact.html')} class={activeNav === 'contact' ? 'active' : ''}>お問合せ</a></li>
+        <li><a href={withBase('link.html')} class={activeNav === 'link' ? 'active' : ''}>リンク</a></li>
+      </ul>
+    </nav>
+
+    <slot name="hero" />
+
+    <main id="content">
+      <slot />
+    </main>
+  </div>
+
+  <footer id="footer">
+    <div class="footer-inner">
+      <span>立命館大学 OIC総合研究機構 認知科学研究センター</span>
+      <span>Copyright 2016 All rights reserved. 認知科学研究センター.</span>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,475 @@
+/* 立命館大学 認知科学研究センター (csc.ritsumei.ac.jp) スタイルシート
+   オリジナルの配色 (#ffcc33)・デザイン意匠を継承しつつ、レスポンシブ表示と可読性を強化 */
+
+:root {
+  --csc-gold: #ffcc33;
+  --csc-gold-hover: #ffe685;
+  --csc-gold-dark: #d97706;
+  --csc-text: #1f2937;
+  --csc-muted: #4b5563;
+  --csc-border: #d1d5db;
+  --csc-bg: #fafaf9;
+  --csc-surface: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+  line-height: 1.75;
+  color: var(--csc-text);
+  background-color: var(--csc-bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.noShow {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+#container {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 16px 48px;
+  flex: 1;
+  background: var(--csc-surface);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+#header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0 12px;
+}
+
+#header a.header-logo-link {
+  display: inline-block;
+  text-decoration: none;
+}
+
+#header img.header-logo {
+  max-width: 374px;
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: opacity 0.2s ease;
+}
+
+#header img.header-logo:hover {
+  opacity: 0.88;
+}
+
+/* メインナビゲーションバー (menubar.css 継承 + モバイル対応) */
+.menubar {
+  background-color: var(--csc-gold);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.menubar ul {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menubar ul li {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.menubar ul li:last-child {
+  border-right: none;
+}
+
+.menubar ul li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  padding: 8px 6px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #111827;
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+
+.menubar ul li a:hover,
+.menubar ul li a.active {
+  background-color: var(--csc-gold-hover);
+  color: #000000;
+}
+
+.menubar ul li a.active {
+  box-shadow: inset 0 -4px 0 #b45309;
+}
+
+/* トップバナー画像 */
+#top_image {
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--csc-border);
+  padding-bottom: 12px;
+  text-align: center;
+}
+
+#top_image img {
+  width: 100%;
+  max-width: 901px;
+  height: auto;
+  border-radius: 4px;
+  display: block;
+  margin: 0 auto;
+}
+
+/* コンテンツ領域 */
+#content {
+  padding: 8px 8px 24px;
+}
+
+h1 {
+  font-size: 1.6rem;
+  margin: 0.5em 0 0.8em;
+  color: #111827;
+  border-bottom: 3px solid var(--csc-gold);
+  padding-bottom: 0.35em;
+}
+
+h2 {
+  font-size: 1.4rem;
+  margin: 1.2em 0 0.75em;
+  padding-bottom: 0.3em;
+  border-bottom: 3px solid var(--csc-gold);
+  color: #111827;
+}
+
+h2:first-child {
+  margin-top: 0.25em;
+}
+
+h3 {
+  font-size: 1.18rem;
+  margin: 1.5em 0 0.6em;
+  padding-left: 10px;
+  border-left: 5px solid var(--csc-gold);
+  color: #111827;
+}
+
+h4 {
+  font-size: 1.05rem;
+  margin: 1.25em 0 0.5em;
+}
+
+p {
+  margin-bottom: 1em;
+}
+
+a {
+  color: #c2410c;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: #9a3412;
+}
+
+a.inner {
+  color: inherit;
+  text-decoration: none;
+}
+
+a.detail_name {
+  color: #111827;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: var(--csc-gold-dark);
+}
+
+a.detail_resarch {
+  color: #b45309;
+  font-size: 0.88rem;
+  margin-left: 4px;
+  font-weight: 600;
+}
+
+ol, ul {
+  margin-left: 1.6em;
+  margin-bottom: 1.2em;
+}
+
+li {
+  margin-bottom: 0.85em;
+}
+
+/* 研究活動サブナビゲーションボタン */
+.subnav-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55em 1.35em;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  background: var(--csc-gold);
+  color: #111827;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  transition: all 0.15s ease;
+}
+
+.button:hover {
+  background: var(--csc-gold-hover);
+  color: #000;
+  transform: translateY(-1px);
+}
+
+.button.active {
+  background: #111827;
+  color: var(--csc-gold);
+  border-color: #111827;
+}
+
+/* ホームの図版 */
+#figure {
+  padding: 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background-color: #f9fafb;
+  text-align: center;
+  max-width: 450px;
+  float: right;
+  margin: 4px 0 16px 20px;
+}
+
+#figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+}
+
+/* 構成メンバーテーブル */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 12px;
+}
+
+table.member-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.94rem;
+  background: #fff;
+}
+
+table.member-table th,
+table.member-table td {
+  border: 1px solid #cbd5e1;
+  padding: 10px 12px;
+  vertical-align: top;
+  text-align: left;
+}
+
+table.member-table th {
+  background-color: #fef3c7;
+  color: #111827;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+table.member-table tr:nth-child(even) td {
+  background-color: #fafaf9;
+}
+
+table.member-table tr:hover td {
+  background-color: #fffbeb;
+}
+
+/* 過去の研究会 (seminar.astro) 用スタイル */
+.seminar-list {
+  list-style: none;
+  margin-left: 0;
+}
+
+.seminar-card {
+  border: 1px solid #e5e7eb;
+  border-left: 5px solid var(--csc-gold);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.seminar-card-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed #e5e7eb;
+}
+
+.seminar-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  background: var(--csc-gold);
+  color: #111827;
+}
+
+.seminar-year-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.seminar-body {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+}
+
+.seminar-body img.seminar-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin: 10px 8px 10px 0;
+  border: 1px solid #e5e7eb;
+}
+
+.seminar-body ol.no_indent {
+  padding-left: 0;
+  margin-left: 0;
+  margin-top: 8px;
+}
+
+.seminar-body li.indent {
+  list-style: none;
+  padding-left: 1.5em;
+  text-indent: -1.5em;
+  margin-bottom: 0.4em;
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+/* フィルタ・検索バー */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin: 14px 0 20px;
+}
+
+.filter-bar input[type="search"],
+.filter-bar select {
+  padding: 7px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.92rem;
+  background: #fff;
+}
+
+.filter-bar input[type="search"] {
+  flex: 1;
+  min-width: 200px;
+}
+
+.filter-count {
+  font-size: 0.85rem;
+  color: #475569;
+  font-weight: 600;
+}
+
+/* お問い合わせ iframe レスポンシブ対応 */
+.embed-container {
+  margin: 20px 0;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.embed-container iframe {
+  width: 100%;
+  max-width: 100%;
+  border: 0;
+  display: block;
+}
+
+/* フッター */
+#footer {
+  background: var(--csc-gold);
+  width: 100%;
+  margin-top: auto;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+#footer .footer-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 18px 16px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  color: #111827;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .menubar ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .menubar ul li {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+  #figure {
+    float: none;
+    max-width: 100%;
+    margin: 12px 0 16px 0;
+  }
+}

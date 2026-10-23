@@ -1,0 +1,71 @@
+* {
+margin:0;
+padding:0;
+}
+
+#menubar{
+  height: 66px;
+  width: 900px;
+  background-color: #ffcc33;
+  overflow:hidden;
+  font-color: black;
+  margin-bottom: 20px;
+}
+
+.menubar ul{
+  margin:0;
+  padding:0;
+}
+.menubar ul li {
+  list-style: none;
+  margin:0;
+  padding:0;
+  font-size:14px;
+  float: left;
+  position: relative;
+  width: 128.5px;/*親メニューの幅*/
+  height: 66px;/*親メニューの高さ*/
+  line-height: 66px;
+  background:#ffcc33;/*親メニューの背景色*/
+  color: black;/*親メニューの文字色*/
+  text-align:center;
+  font-weight:bold;
+}
+.menubar ul li a {
+  color: black;
+  display: block;
+  text-decoration: none;
+}
+.menubar ul li:hover, .menubar ul li a:hover {
+  background:#ffe685;/*ホバー時の親メニューの背景色*/
+  color:black;/*ホバー時の親メニューの文字色*/
+}
+.menubar ul li ul {
+  position: absolute;
+  top: 66px;/*親メニューの高さと同じにする*/
+  width: 128.5px;
+  z-index: 100;
+}
+.menubar ul li ul li {
+  visibility: hidden;
+  overflow: hidden;
+  width: 128.5px;/*サブメニューの幅*/
+  height: 0;
+  background:#ffcc33;/*サブメニューの背景色*/
+}
+.menubar ul li ul li:hover, .menubar ul li ul li a:hover {
+  background:#ffe685;/*ホバー時のサブメニューの背景色*/
+}
+.menubar ul li:hover ul li, .menubar ul li a:hover ul li{
+  visibility: visible;
+  overflow: visible;
+  height:66px;/*サブメニューの高さ*/
+  z-index: 10;
+}
+/*.menubar * {
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}*/

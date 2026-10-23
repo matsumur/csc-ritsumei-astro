@@ -1,0 +1,17 @@
+---
+interface Props {
+  activeTab: 'resarch' | 'seminar' | 'publication' | 'others' | 'winning';
+}
+
+const { activeTab } = Astro.props;
+const rawBase = import.meta.env.BASE_URL || '/';
+const base = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
+const withBase = (p: string) => `${base}${p.replace(/^\/+/, '')}`;
+---
+<nav class="subnav-bar" aria-label="研究活動サブメニュー">
+  <a href={withBase('resarch.html')} class={`button ${activeTab === 'resarch' ? 'active' : ''}`}>研究活動</a>
+  <a href={withBase('seminar.html')} class={`button ${activeTab === 'seminar' ? 'active' : ''}`}>過去の研究会の記録</a>
+  <a href={withBase('publication.html')} class={`button ${activeTab === 'publication' ? 'active' : ''}`}>刊行物</a>
+  <a href={withBase('others.html')} class={`button ${activeTab === 'others' ? 'active' : ''}`}>その他の活動</a>
+  <a href={withBase('winning.html')} class={`button ${activeTab === 'winning' ? 'active' : ''}`}>受賞</a>
+</nav>

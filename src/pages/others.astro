@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ResearchSubNav from '../components/ResearchSubNav.astro';
+import othersData from '../data/others.json';
+---
+<BaseLayout title="認知科学研究センター：その他の活動" activeNav="resarch">
+  <ResearchSubNav activeTab="others" />
+
+  <h3>講演会，シンポジウム，海外との共同研究</h3>
+  <ol>
+    {othersData.collaborations.map((item) => (
+      <li>{item}</li>
+    ))}
+  </ol>
+
+  <h3>講演会・学会などの支援協賛</h3>
+  <ol>
+    {othersData.sponsorships.map((item) => (
+      <li>{item}</li>
+    ))}
+  </ol>
+</BaseLayout>

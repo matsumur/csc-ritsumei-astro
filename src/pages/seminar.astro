@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ResearchSubNav from '../components/ResearchSubNav.astro';
+import seminars from '../data/seminars.json';
+
+const rawBase = import.meta.env.BASE_URL || '/';
+const base = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
+
+// Rewrite relative image paths in seminar HTML so they work under any GitHub Pages base path
+const localizedSeminars = seminars.map((item) => ({
+  ...item,
+  localizedHtml: item.html
+    .replace(/src="csc\//g, `src="${base}csc/`)
+    .replace(/src="image\//g, `src="${base}image/`),
+}));
+
+const years = Array.from(new Set(seminars.map((s) => s.year))).sort((a, b) => b.localeCompare(a));
+---
+<BaseLayout title="認知科学研究センター：過去の研究会" activeNav="resarch">
+  <ResearchSubNav activeTab="seminar" />
+
+  <h3>これまでの研究会活動について</h3>
+  <p>研究センター内において開かれた研究会を紹介します．研究会は2015年10月を初回として2か月ごとに開かれています．</p>
+
+  <div class="filter-bar">
+    <select id="seminar-year-filter" aria-label="開催年で絞り込み">
+      <option value="">すべての開催年（2015年〜2024年）</option>
+      {years.map((y) => (
+        <option value={y}>{y}年</option>
+      ))}
+    </select>
+    <input type="search" id="seminar-search" placeholder="演者名・講演タイトル・キーワードで検索..." aria-label="研究会検索" />
+    <span class="filter-count" id="seminar-count">全 {localizedSeminars.length} 件</span>
+  </div>
+
+  <ol class="seminar-list" id="seminar-list">
+    {localizedSeminars.map((item) => (
+      <li class="seminar-card" data-year={item.year}>
+        <div class="seminar-card-header">
+          <span class="seminar-badge">{item.badge}</span>
+          <span class="seminar-year-tag">{item.year}年</span>
+          <span style="font-size: 0.85rem; color: #6b7280;">#{item.id}</span>
+        </div>
+        <div class="seminar-body" set:html={item.localizedHtml} />
+      </li>
+    ))}
+  </ol>
+
+  <script is:inline>
+    const yearSelect = document.getElementById('seminar-year-filter');
+    const searchInput = document.getElementById('seminar-search');
+    const cards = Array.from(document.querySelectorAll('.seminar-card'));
+    const countEl = document.getElementById('seminar-count');
+
+    function filterSeminars() {
+      const y = yearSelect ? yearSelect.value : '';
+      const q = searchInput ? searchInput.value.trim().toLowerCase() : '';
+      let visible = 0;
+      cards.forEach((card) => {
+        const matchYear = !y || card.getAttribute('data-year') === y;
+        const matchQuery = !q || card.textContent.toLowerCase().includes(q);
+        const show = matchYear && matchQuery;
+        card.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+      if (countEl) countEl.textContent = `${visible} / ${cards.length} 件表示`;
+    }
+
+    if (yearSelect) yearSelect.addEventListener('change', filterSeminars);
+    if (searchInput) searchInput.addEventListener('input', filterSeminars);
+  </script>
+</BaseLayout>

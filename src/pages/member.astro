@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import members from '../data/members.json';
+---
+<BaseLayout title="認知科学研究センター：構成メンバー" activeNav="member">
+  <h2>構成メンバー</h2>
+
+  <div class="filter-bar">
+    <input type="search" id="member-search" placeholder="氏名・所属学部・専門・研究領域で検索..." aria-label="メンバー検索" />
+    <span class="filter-count" id="member-count">全 {members.length} 名</span>
+  </div>
+
+  <div class="table-wrapper">
+    <table class="member-table" id="member-table">
+      <thead>
+        <tr>
+          <th style="width: 14%;">氏名</th>
+          <th style="width: 20%;">所属学部・職名</th>
+          <th style="width: 22%;">現在の専門</th>
+          <th style="width: 44%;">主たる研究領域</th>
+        </tr>
+      </thead>
+      <tbody>
+        {members.map((m) => (
+          <tr class="member-row">
+            <td>
+              {m.profileUrl ? (
+                <a href={m.profileUrl} class="detail_name" target="_blank" rel="noopener noreferrer">{m.name}</a>
+              ) : (
+                <strong>{m.name}</strong>
+              )}
+            </td>
+            <td>{m.affiliation}</td>
+            <td>{m.specialty}</td>
+            <td>
+              {m.researchArea}
+              {m.detailUrl && (
+                <a href={m.detailUrl} class="detail_resarch" target="_blank" rel="noopener noreferrer">{m.detailLabel || '（詳細）'}</a>
+              )}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <script is:inline>
+    const searchInput = document.getElementById('member-search');
+    const rows = Array.from(document.querySelectorAll('.member-row'));
+    const countEl = document.getElementById('member-count');
+    if (searchInput) {
+      searchInput.addEventListener('input', () => {
+        const q = searchInput.value.trim().toLowerCase();
+        let visible = 0;
+        rows.forEach((row) => {
+          const match = !q || row.textContent.toLowerCase().includes(q);
+          row.style.display = match ? '' : 'none';
+          if (match) visible++;
+        });
+        if (countEl) countEl.textContent = `${visible} / ${rows.length} 名表示`;
+      });
+    }
+  </script>
+</BaseLayout>
