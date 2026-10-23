@@ -182,10 +182,10 @@
   {
     "name": "松村 耕平",
     "profileUrl": "http://research-db.ritsumei.ac.jp/Profiles/112/0011175/profile.html",
-    "affiliation": "情報理工学部・准教授",
-    "specialty": "HCI，アーバンインフォマティクス，身体性認知科学",
+    "affiliation": "情報理工学部・教授",
+    "specialty": "HCI，プレイフルネス，身体性認知科学",
     "researchArea": "人間が周囲の環境とどのように関わっているのか，また，情報システムはその関わりあいをどのように変えることができるのか，を理解しようとしています．最近は「場所」と紐づいた人間の行為，例えば，目の前にあるお店に関する会話や，気になったモノを撮影する，といったことを題材にして研究を進めています．",
-    "detailUrl": "http://garacter.org",
+    "detailUrl": "https://playful.ist",
     "detailLabel": "（詳細）"
   },
   {
@@ -227,7 +227,7 @@
   {
     "name": "泉 朋子",
     "profileUrl": "http://www.ritsumei.ac.jp/ise/teacher/detail/?id=133",
-    "affiliation": "情報理工学部・准教授",
+    "affiliation": "情報理工学部・教授",
     "specialty": "ヒューマンインターフェース",
     "researchArea": "観光支援，運転支援，防災，思い出工学，感性工学に関する情報デザイン",
     "detailUrl": "",
@@ -252,7 +252,7 @@
     "detailLabel": ""
   },
   {
-    "name": "布山美慕",
+    "name": "布山 美慕",
     "profileUrl": "",
     "affiliation": "文学部・准教授",
     "specialty": "認知科学",
@@ -261,7 +261,7 @@
     "detailLabel": ""
   },
   {
-    "name": "北野勝則",
+    "name": "北野 勝則",
     "profileUrl": "",
     "affiliation": "情報理工学部・教授",
     "specialty": "計算論的神経科学",
@@ -270,7 +270,7 @@
     "detailLabel": ""
   },
   {
-    "name": "春日彩花",
+    "name": "春日 彩花",
     "profileUrl": "",
     "affiliation": "総合心理学部・助教",
     "specialty": "障害発達心理学、高齢者心理学",
@@ -279,7 +279,7 @@
     "detailLabel": ""
   },
   {
-    "name": "西原陽子",
+    "name": "西原 陽子",
     "profileUrl": "",
     "affiliation": "情報理工学部・教授",
     "specialty": "HCI",
@@ -288,7 +288,7 @@
     "detailLabel": ""
   },
   {
-    "name": "城綾実",
+    "name": "城 綾実",
     "profileUrl": "",
     "affiliation": "文学部 准教授",
     "specialty": "会話分析、相互行為分析、身体性",
