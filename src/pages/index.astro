@@ -6,7 +6,7 @@ const rawBase = import.meta.env.BASE_URL || '/';
 const base = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
 const withBase = (p: string) => `${base}${p.replace(/^\/+/, '')}`;
 ---
-<BaseLayout title="認知科学研究センター：新着情報" activeNav="news">
+<BaseLayout title="先端認知科学研究センター：新着情報" activeNav="news">
   <h2><a id="topics" class="inner">ニュース</a></h2>
   <ol>
     {newsData.latestNews.map((item) => (
